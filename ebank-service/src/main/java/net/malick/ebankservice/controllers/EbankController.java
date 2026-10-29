@@ -1,4 +1,4 @@
-package net.malick.ebankservice;
+package net.malick.ebankservice.controllers;
 
 import net.malick.ebankservice.entities.BankAcount;
 import net.malick.ebankservice.service.EbankService;
