@@ -15,17 +15,17 @@ public class CustomerController {
         this.customerService = customerService;
     }
 
-    @GetMapping("/customer")
+    @GetMapping("/customers")
     public List<Customer> getAllCustomer(){
         return customerService.getAllCustomer();
     }
 
-    @GetMapping("/customer/{id}")
+    @GetMapping("/customers/{id}")
     public Customer findCustomerById(@PathVariable Long id){
         return customerService.findCustomerById(id);
     }
 
-    @PostMapping("/customer")
+    @PostMapping("/customers")
     public void saveCustomer(@RequestBody Customer customer){
         customerService.saveCustomer(customer);
     }
