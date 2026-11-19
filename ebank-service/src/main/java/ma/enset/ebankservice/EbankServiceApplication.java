@@ -1,0 +1,35 @@
+package ma.enset.ebankservice;
+
+import ma.enset.ebankservice.entities.BankAccount;
+import ma.enset.ebankservice.service.EbankService;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.openfeign.EnableFeignClients;
+import org.springframework.context.annotation.Bean;
+
+@SpringBootApplication
+@EnableFeignClients
+public class EbankServiceApplication {
+
+    public static void main(String[] args) {
+
+        SpringApplication.run(EbankServiceApplication.class, args);
+    }
+
+    @Bean
+    CommandLineRunner commandLineRunner(EbankService ebankService){
+        return args -> {
+            for (int i = 1; i < 4; i++) {
+                for (int j = 0; j <5 ; j++) {
+                    ebankService.save(BankAccount.builder()
+                                    .balance(1000+Math.random()*60000)
+                                    .type(Math.random()>0.5?"CURRENT-ACCOUNT":"SAVING-ACCOUNT")
+                                    .customerId(i)
+                            .build());
+                }
+            }
+        };
+    }
+
+}
